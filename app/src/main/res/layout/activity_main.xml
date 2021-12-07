@@ -10,7 +10,8 @@
             type="com.example.dictionaryapp.MainViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -27,17 +28,17 @@
 
         <EditText
             android:id="@+id/input"
-            android:onTextChanged="@{viewModel.onTextChanged}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="16dp"
+            android:autofillHints=""
             android:hint="@string/input_hint"
             android:inputType="text"
+            android:onTextChanged="@{viewModel.onTextChanged}"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            android:autofillHints="" />
+            app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <Button
             android:id="@+id/search"
@@ -46,10 +47,51 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
+            android:onClick="@{()->viewModel.onSearch()}"
             android:text="@string/button"
             android:textSize="16sp"
-            android:onClick="@{()->viewModel.onSearch()}"
             app:layout_constraintTop_toBottomOf="@+id/input" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{viewModel.result.word}"
+            android:textColor="@color/black"
+            android:textSize="64sp"
+            android:visibility="@{viewModel.resultVisibility}"
+            app:layout_constraintTop_toBottomOf="@id/search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/meanings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:scrollbars="vertical"
+            android:visibility="@{viewModel.resultVisibility}"
+            android:data="@{viewModel.result}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/word" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/error"
+            android:visibility="@{viewModel.errorVisibility}"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:gravity="center"
+                android:textSize="48sp"
+                android:text="@string/error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 </layout>

@@ -1,23 +1,38 @@
 package com.example.dictionaryapp
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.dictionaryapp.network.data.Word
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
     private var word: String? = null
 
+    private val _resultVisibility = MutableLiveData(false)
+    val resultVisibility: LiveData<Boolean> get() = _resultVisibility
+
+    private val _errorVisibility = MutableLiveData(false)
+    val errorVisibility: LiveData<Boolean> get() = _errorVisibility
+
+    private val _result = MutableLiveData<Word>()
+    val result: LiveData<Word> get() = _result
+
     fun onSearch() {
         if (!word.isNullOrEmpty()) {
-            viewModelScope.launch {
+            CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val resp =  repository.getWord(word!!)
-                }catch (e:Exception){
-                    Log.d("fetch","exception is ${e.message}")
+                    val resp = repository.getWord(word!!)
+                    Log.d("fetch", "response is ${resp[0]}")
+                    _result.postValue(resp[0])
+                    _errorVisibility.postValue(false)
+                    _resultVisibility.postValue(true)
+                } catch (e: Exception) {
+                    _resultVisibility.postValue(false)
+                    _errorVisibility.postValue(true)
+                    Log.d("fetch", "exception is ${e.message}")
                 }
             }
         }

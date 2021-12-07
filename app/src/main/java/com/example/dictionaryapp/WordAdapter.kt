@@ -3,14 +3,28 @@ package com.example.dictionaryapp
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dictionaryapp.databinding.HeadItemBinding
 import com.example.dictionaryapp.databinding.MeaningItemBinding
 import com.example.dictionaryapp.network.data.Meaning
+import com.example.dictionaryapp.network.data.Word
 
-class MeaningAdapter: RecyclerView.Adapter<MeaningAdapter.ViewHolder>() {
+class WordAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var data:List<Meaning> = emptyList()
+    private var word:Word? = null
 
-    class ViewHolder(private val binding: MeaningItemBinding): RecyclerView.ViewHolder(binding.root) {
+    private val HEADER_ITEM = 1
+    private val MEANING_ITEM = 2
+
+
+    class HeaderHolder(private val binding: HeadItemBinding):RecyclerView.ViewHolder(binding.root){
+
+        fun bind(word:Word?){
+            binding.result = word
+        }
+    }
+
+    class MeaningHolder(private val binding: MeaningItemBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(meanings:Meaning){
             binding.partOfSpeechV = meanings.partOfSpeech
@@ -21,23 +35,46 @@ class MeaningAdapter: RecyclerView.Adapter<MeaningAdapter.ViewHolder>() {
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = MeaningItemBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(binding)
+        if(viewType == MEANING_ITEM) {
+            val binding = MeaningItemBinding.inflate(layoutInflater, parent, false)
+            return MeaningHolder(binding)
+        }else{
+            val binding = HeadItemBinding.inflate(layoutInflater,parent,false)
+            return HeaderHolder(binding)
+        }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
-        holder.bind(item)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+        if(holder.itemViewType == MEANING_ITEM) {
+            val view = holder as MeaningHolder
+            val item = data[position-1]
+            view.bind(item)
+        }else{
+            val view = holder as HeaderHolder
+            view.bind(word)
+        }
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return data.size + 1
     }
 
-    fun updateMeanings(meanings:List<Meaning>?){
-        data = meanings ?: emptyList()
-        notifyDataSetChanged()
+    override fun getItemViewType(position: Int): Int {
+        if(position == 0){
+            return HEADER_ITEM
+        }else{
+            return MEANING_ITEM
+        }
+    }
+
+    fun updateMeanings(wordData:Word?){
+        if(wordData != null) {
+            word = wordData
+            data = wordData.meanings ?: emptyList()
+            notifyDataSetChanged()
+        }
     }
 }

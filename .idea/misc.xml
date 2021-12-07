@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android_Projects/DictionaryApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Dictionary/app/src/main/res/layout/head_item.xml" value="0.12771739130434784" />
+        <entry key="..\:/Dictionary/app/src/main/res/layout/meaning_item.xml" value="0.12771739130434784" />
       </map>
     </option>
   </component>

@@ -3,4 +3,7 @@
     <string name="app_title">Dictionary</string>
     <string name="button">SEARCH</string>
     <string name="input_hint">Enter a word</string>
+    <string name="phonetic_title">phonetic</string>
+    <string name="origine_title">origin</string>
+    <string name="error">WORD NOT FOUND</string>
 </resources>
