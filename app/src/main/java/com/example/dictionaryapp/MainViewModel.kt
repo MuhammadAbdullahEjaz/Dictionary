@@ -17,11 +17,15 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
     private val _errorVisibility = MutableLiveData(false)
     val errorVisibility: LiveData<Boolean> get() = _errorVisibility
 
+    private val _loadingVisibility = MutableLiveData(false)
+    val loadingVisibility: LiveData<Boolean> get() = _loadingVisibility
+
     private val _result = MutableLiveData<Word>()
     val result: LiveData<Word> get() = _result
 
     fun onSearch() {
         if (!word.isNullOrEmpty()) {
+            _loadingVisibility.postValue(true)
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val resp = repository.getWord(word!!)
@@ -29,9 +33,11 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
                     _result.postValue(resp[0])
                     _errorVisibility.postValue(false)
                     _resultVisibility.postValue(true)
+                    _loadingVisibility.postValue(false)
                 } catch (e: Exception) {
                     _resultVisibility.postValue(false)
                     _errorVisibility.postValue(true)
+                    _loadingVisibility.postValue(false)
                     Log.d("fetch", "exception is ${e.message}")
                 }
             }
