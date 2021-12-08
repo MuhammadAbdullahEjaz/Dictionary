@@ -2,12 +2,14 @@ package com.example.dictionaryapp
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.dictionaryapp.database.models.TYPE
 import com.example.dictionaryapp.network.data.Definition
 import com.example.dictionaryapp.network.data.Meaning
 import com.example.dictionaryapp.network.data.Word
 import com.example.dictionaryapp.database.models.Word as WordDB
 import com.example.dictionaryapp.database.models.Meaning as MeaningDB
 import com.example.dictionaryapp.database.models.Definition as DefinitionDB
+import com.example.dictionaryapp.database.models.SynonymsAntonyms as Sa
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,7 +38,7 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
             CoroutineScope(Dispatchers.IO).launch {
                 val wordApi = getWordFromDatabaseToApi(words!!)
                 if (wordApi != null) {
-                    _result.postValue(wordApi)
+                    _result.postValue(wordApi!!)
                     _errorVisibility.postValue(false)
                     _resultVisibility.postValue(true)
                     _loadingVisibility.postValue(false)
@@ -44,9 +46,8 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
                 } else {
                     try {
                         val resp = repository.getWord(words!!)
-                        insertWordFromApitoDatabase(resp[0])
                         _result.postValue(resp[0])
-                        insertWordFromApitoDatabase(resp[0])
+                         insertWordFromApitoDatabase(resp[0])
                         _errorVisibility.postValue(false)
                         _resultVisibility.postValue(true)
                         _loadingVisibility.postValue(false)
@@ -69,11 +70,13 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
             val meaningList = mutableListOf<Meaning>()
             for (mean in meaningDb) {
                 var definitionDb = repository.getDefinitionByMeaningIdDatabase(mean.id!!)
+                var syn = repository.getSynonums(mean.id)
+                var ant = repository.getAntonyms(mean.id)
                 var definitionApi = Definition(
                     definitionDb.definition,
                     definitionDb.example,
-                    emptyList<String>(),
-                    emptyList<String>()
+                    syn ?: emptyList<String>(),
+                    ant ?: emptyList<String>()
                 )
                 var meaningApi = Meaning(mean.partOfSpeech, listOf(definitionApi))
                 meaningList.add(meaningApi)
@@ -112,6 +115,16 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
                                 mean_id
                             )
                         )
+                        if(mean.definitions[0].synonyms.isNotEmpty()){
+                            for(syn in mean.definitions[0].synonyms){
+                                repository.insertSynonymAntonyms(Sa(null,mean_id,TYPE.SYNONYMS,syn))
+                            }
+                        }
+                        if(mean.definitions[0].antonyms.isNotEmpty()){
+                            for(ant in mean.definitions[0].antonyms){
+                                repository.insertSynonymAntonyms(Sa(null,mean_id,TYPE.ANTONYMS,ant))
+                            }
+                        }
                     }
                 }
             }

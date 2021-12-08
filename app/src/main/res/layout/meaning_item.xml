@@ -14,6 +14,9 @@
         <variable
             name="exampleV"
             type="String" />
+        <variable
+            name="synantData"
+            type="java.util.Map&lt;String,java.util.List&lt;String>>" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -85,12 +88,15 @@
         <ExpandableListView
             android:id="@+id/synonym"
             android:textSize="16sp"
+            android:visibility="@{synantData != null}"
             android:layout_marginTop="4dp"
             android:layout_marginStart="80dp"
             android:textStyle="bold|italic"
-            android:layout_width="wrap_content"
+            android:data="@{synantData}"
+            android:minHeight="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/definition_value"/>
+            android:layout_below="@id/example_value"/>
 
     </RelativeLayout>
 </layout>

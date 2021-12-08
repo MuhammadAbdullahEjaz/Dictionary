@@ -1,11 +1,10 @@
 package com.example.dictionaryapp.utils
 
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dictionaryapp.SynonymAntonymsListAdapter
 import com.example.dictionaryapp.WordAdapter
 import com.example.dictionaryapp.network.data.Meaning
 import com.example.dictionaryapp.network.data.Word
@@ -34,6 +33,12 @@ fun setVisibility(view:LinearLayout, visibility:Boolean){
     else view.visibility = View.GONE
 }
 
+@BindingAdapter("android:visibility")
+fun setVisibility(view:ExpandableListView, visibility:Boolean){
+    if(visibility) view.visibility = View.VISIBLE
+    else view.visibility = View.GONE
+}
+
 @BindingAdapter("android:data")
 fun setData(recyclerView: RecyclerView, data:Word?){
     if(recyclerView.adapter == null){
@@ -43,5 +48,27 @@ fun setData(recyclerView: RecyclerView, data:Word?){
     }else{
         val adapter = recyclerView.adapter as WordAdapter
         adapter.updateMeanings(data)
+    }
+}
+
+@BindingAdapter("android:data")
+fun setData(expandableListView: ExpandableListView, data:Map<String,List<String>>?) {
+    if (data != null) {
+        val adapter = SynonymAntonymsListAdapter(data)
+        expandableListView.setAdapter(adapter)
+        expandableListView.layoutParams.height = 150
+        expandableListView.setOnGroupExpandListener {
+            var height = 0
+            for(i in 0..expandableListView.childCount){
+                height += 10
+                height += expandableListView.dividerHeight
+            }
+            expandableListView.layoutParams.height = (height+6)*10
+        }
+
+        expandableListView.setOnGroupCollapseListener {
+            expandableListView.layoutParams.height = 150
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.dictionaryapp
 
 import com.example.dictionaryapp.database.AppDatabase
+import com.example.dictionaryapp.database.models.SynonymsAntonyms
 import com.example.dictionaryapp.network.DictionaryApiService
 import com.example.dictionaryapp.network.RetrofitBuilder
 import com.example.dictionaryapp.network.data.Word
@@ -38,7 +39,17 @@ class MainRepository(private val database: AppDatabase){
         database.definitionDao().putDefinition(definition)
     }
 
+    suspend fun getSynonums(id:Long):List<String>?{
+        return database.synonymsantonymsDao().getSynonyms(id)
+    }
 
+    suspend fun getAntonyms(id:Long):List<String>?{
+        return database.synonymsantonymsDao().getAntonyms(id)
+    }
+
+    suspend fun insertSynonymAntonyms(synonymsAntonyms: SynonymsAntonyms){
+        database.synonymsantonymsDao().putEntry(synonymsAntonyms)
+    }
 
     suspend fun getWord(word:String):List<Word>{
         return dictionaryApiService.getWord(word)
