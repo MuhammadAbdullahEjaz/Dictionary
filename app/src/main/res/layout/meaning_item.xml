@@ -20,7 +20,6 @@
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="@color/light_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -28,75 +27,70 @@
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:paddingVertical="8dp"
+        android:elevation="8dp"
         android:layout_marginTop="4dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/part_of_speech"
-            android:textSize="16sp"
-            android:textStyle="bold|italic"
             android:text="@{partOfSpeechV}"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            style="@style/headingText"/>
 
         <TextView
             android:id="@+id/definition"
             android:layout_marginTop="4dp"
-            android:textSize="16sp"
-            android:textStyle="bold|italic"
             android:visibility="@{definitionV != null}"
             android:layout_marginStart="80dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/part_of_speech"
-            android:text="definition" />
+            android:text="definition"
+            style="@style/subHeadingText"/>
 
         <TextView
             android:id="@+id/definition_value"
             android:layout_marginTop="4dp"
             android:text="@{definitionV}"
             android:layout_marginStart="80dp"
-            android:textSize="16sp"
-            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/definition" />
+            android:layout_below="@id/definition"
+            style="@style/bodyText"/>
 
         <TextView
             android:id="@+id/example"
-            android:textSize="16sp"
             android:layout_marginTop="4dp"
             android:layout_marginStart="80dp"
-            android:textStyle="bold|italic"
             android:visibility="@{exampleV != null}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/definition_value"
-            android:text="example" />
+            android:text="example"
+            style="@style/subHeadingText"/>
 
         <TextView
             android:id="@+id/example_value"
             android:text="@{exampleV}"
             android:layout_marginTop="4dp"
-            android:textSize="16sp"
             android:layout_marginStart="80dp"
-            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/example" />
+            android:layout_below="@id/example"
+            style="@style/bodyText"/>
 
         <ExpandableListView
             android:id="@+id/synonym"
-            android:textSize="16sp"
             android:visibility="@{synantData != null}"
             android:layout_marginTop="4dp"
             android:layout_marginStart="80dp"
-            android:textStyle="bold|italic"
             android:data="@{synantData}"
-            android:minHeight="200dp"
+            android:indicatorLeft="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/example_value"/>
+            android:layout_below="@id/example_value"
+            style="@style/bodyText"/>
 
     </RelativeLayout>
 </layout>

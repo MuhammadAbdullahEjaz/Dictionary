@@ -34,8 +34,17 @@ class WordAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             if (meanings.definitions.isNotEmpty()) {
                 binding.definitionV = meanings.definitions.first().definition
                 binding.exampleV = meanings.definitions.first().example
-                if (meanings.definitions.first().synonyms.isEmpty() && meanings.definitions.first().antonyms.isEmpty()) {
-                    binding.synantData = null
+                if (meanings.definitions.first().synonyms.isEmpty() || meanings.definitions.first().antonyms.isEmpty()) {
+                    if(meanings.definitions.first().synonyms.isNotEmpty())
+                    {
+                        binding.synantData = mapOf<String, List<String>>(
+                            Pair("synonyms", meanings.definitions.first().synonyms))
+                    }else if(meanings.definitions.first().antonyms.isNotEmpty()){
+                        binding.synantData = mapOf<String, List<String>>(
+                            Pair("antonyms", meanings.definitions.first().synonyms))
+                    }else {
+                        binding.synantData = null
+                    }
                 } else {
                     val synAntData = mapOf<String, List<String>>(
                         Pair("synonyms", meanings.definitions.first().synonyms),

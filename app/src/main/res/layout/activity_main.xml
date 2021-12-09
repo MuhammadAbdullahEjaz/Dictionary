@@ -5,15 +5,16 @@
     tools:context=".MainActivity">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.dictionaryapp.MainViewModel" />
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/title"
@@ -26,19 +27,23 @@
             android:textSize="32sp"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/input"
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="@string/input_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="16dp"
-            android:autofillHints=""
-            android:hint="@string/input_hint"
-            android:inputType="text"
-            android:onTextChanged="@{viewModel.onTextChanged}"
-            android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@+id/title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:onTextChanged="@{viewModel.onTextChanged}"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/search"
@@ -56,11 +61,11 @@
             android:id="@+id/word"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.result.word}"
-            android:textColor="@color/black"
             android:textSize="64sp"
             android:visibility="@{viewModel.resultVisibility}"
             app:layout_constraintTop_toBottomOf="@id/search" />
@@ -70,42 +75,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
+            android:data="@{viewModel.result}"
+            android:nestedScrollingEnabled="true"
             android:scrollbars="vertical"
             android:visibility="@{viewModel.resultVisibility}"
-            android:data="@{viewModel.result}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/word" />
 
         <LinearLayout
-            android:orientation="vertical"
             android:id="@+id/error"
-            android:visibility="@{viewModel.errorVisibility}"
-            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.errorVisibility}">
 
             <TextView
-                android:gravity="center"
-                android:textSize="48sp"
-                android:text="@string/error"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/error"
+                android:textSize="48sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
             android:id="@+id/loading"
-            android:visibility="@{viewModel.loadingVisibility}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.loadingVisibility}">
 
             <ProgressBar
-                android:gravity="center"
-                android:layout_marginTop="16dp"
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center" />
 
         </LinearLayout>
 

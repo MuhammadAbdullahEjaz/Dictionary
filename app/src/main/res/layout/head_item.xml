@@ -10,7 +10,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp">
+        android:elevation="8dp">
 
         <TextView
             android:id="@+id/phonetic"
@@ -20,8 +20,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/phonetic_title"
-            android:textSize="16sp"
-            android:textStyle="bold|italic" />
+            style="@style/headingText"/>
 
         <TextView
             android:id="@+id/phonetic_value"
@@ -31,8 +30,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{result.phonetic}"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            style="@style/bodyText" />
 
         <TextView
             android:id="@+id/origin"
@@ -42,8 +40,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/origine_title"
-            android:textSize="16sp"
-            android:textStyle="bold|italic"
+            style="@style/headingText"
             android:visibility="@{result.origin != null}" />
 
         <TextView
@@ -56,8 +53,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="4dp"
             android:text="@{result.origin}"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            style="@style/bodyText" />
 
 
     </RelativeLayout>
