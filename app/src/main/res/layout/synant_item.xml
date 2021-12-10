@@ -8,6 +8,8 @@
     <TextView
         android:id="@+id/item"
         android:text="@{text}"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/bodyText">

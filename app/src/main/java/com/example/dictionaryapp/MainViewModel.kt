@@ -134,6 +134,10 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
     }
 
     fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
+        if(text.isEmpty()){
+            _resultVisibility.postValue(false)
+            _errorVisibility.postValue(false)
+        }
         words = text.toString()
     }
 

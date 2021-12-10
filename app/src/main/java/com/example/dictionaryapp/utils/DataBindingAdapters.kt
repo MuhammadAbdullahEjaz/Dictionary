@@ -59,6 +59,7 @@ fun setData(expandableListView: ExpandableListView, data:Map<String,List<String>
         expandableListView.layoutParams.height = 150
         expandableListView.setOnGroupExpandListener {
             var height = 0
+
             for(i in 0..expandableListView.childCount){
                 height += 10
                 height += expandableListView.dividerHeight

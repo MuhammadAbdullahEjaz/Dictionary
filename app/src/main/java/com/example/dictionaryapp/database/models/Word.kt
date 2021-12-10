@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class Word(
     @PrimaryKey(autoGenerate = true) val id:Long?,
     val word:String,
-    val phonetic:String,
+    val phonetic:String?,
     val origin:String?
 )
