@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding.input.onEditorAction(EditorInfo.IME_ACTION_DONE)
         binding.viewModel = viewModel
         binding.input.setOnKeyListener{view,keyCode,_ -> handleKeyEvent(view, keyCode) }
-        binding.search.setOnClickListener {
+        binding.customEnd.setEndIconOnClickListener{
             val inputMethodManager =
                 getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(binding.input.windowToken, 0)
