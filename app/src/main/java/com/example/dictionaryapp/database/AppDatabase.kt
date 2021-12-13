@@ -13,7 +13,7 @@ import com.example.dictionaryapp.database.models.Meaning
 import com.example.dictionaryapp.database.models.SynonymsAntonyms
 import com.example.dictionaryapp.database.models.Word
 
-@Database(entities = [Word::class, Meaning::class, Definition::class, SynonymsAntonyms::class], version = 4)
+@Database(entities = [Word::class, Meaning::class, Definition::class, SynonymsAntonyms::class], version = 5)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun wordDao():WordDao
     abstract fun definitionDao():DefinitionDao
@@ -28,7 +28,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "dictionary_database3"
+                    "dictionary_database5"
                 ).build()
                 INSTANCE = instance
                 instance

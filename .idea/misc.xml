@@ -10,10 +10,12 @@
         <entry key="..\:/Dictionary/app/src/main/res/drawable/ic_baseline_history_24.xml" value="0.1" />
         <entry key="..\:/Dictionary/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
         <entry key="..\:/Dictionary/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Dictionary/app/src/main/res/layout/activity_words.xml" value="0.13125" />
         <entry key="..\:/Dictionary/app/src/main/res/layout/head_item.xml" value="0.12771739130434784" />
         <entry key="..\:/Dictionary/app/src/main/res/layout/meaning_item.xml" value="0.18" />
         <entry key="..\:/Dictionary/app/src/main/res/layout/synant_header.xml" value="0.1" />
         <entry key="..\:/Dictionary/app/src/main/res/layout/synant_item.xml" value="0.1" />
+        <entry key="..\:/Dictionary/app/src/main/res/layout/word_item.xml" value="0.15572916666666667" />
       </map>
     </option>
   </component>

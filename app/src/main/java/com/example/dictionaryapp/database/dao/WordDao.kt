@@ -8,6 +8,9 @@ import com.example.dictionaryapp.database.models.Word
 
 @Dao
 interface WordDao {
+    @Query("SELECT w.word FROM word as w")
+    suspend fun getAllWords(): List<String>
+
     @Query("SELECT * FROM word as w WHERE w.word=:text")
     suspend fun getWord(text:String):Word?
 

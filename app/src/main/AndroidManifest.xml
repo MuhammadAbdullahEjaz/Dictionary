@@ -3,6 +3,7 @@
     package="com.example.dictionaryapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -12,9 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DictionaryApp">
         <activity
-            android:label=""
+            android:name=".WordsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

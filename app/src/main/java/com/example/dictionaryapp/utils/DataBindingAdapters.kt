@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dictionaryapp.SynonymAntonymsListAdapter
 import com.example.dictionaryapp.WordAdapter
+import com.example.dictionaryapp.WordListAdaptet
 import com.example.dictionaryapp.network.data.Meaning
 import com.example.dictionaryapp.network.data.Word
 
@@ -48,6 +49,18 @@ fun setData(recyclerView: RecyclerView, data:Word?){
     }else{
         val adapter = recyclerView.adapter as WordAdapter
         adapter.updateMeanings(data)
+    }
+}
+
+@BindingAdapter("android:wordListAdapter")
+fun setWordAdapter(recyclerView: RecyclerView, data:List<String>?){
+    if(recyclerView.adapter == null){
+        val adapter = WordListAdaptet()
+        adapter.updateData(data)
+        recyclerView.adapter = adapter
+    }else{
+        val adapter = recyclerView.adapter as WordListAdaptet
+        adapter.updateData(data)
     }
 }
 
