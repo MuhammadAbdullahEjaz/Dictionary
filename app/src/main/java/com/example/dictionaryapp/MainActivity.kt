@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -19,8 +21,11 @@ class MainActivity : AppCompatActivity() {
     val getWord = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->
         if(result.resultCode == Activity.RESULT_OK){
-            val word = result.data
-            
+            val data = result.data
+            val word = data?.extras?.get("WORD")
+            binding.input.setText(word.toString())
+            viewModel.onSearch()
+
         }
     }
 
@@ -43,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.history.setOnClickListener{
             val intent = Intent(this ,WordsActivity::class.java)
-            startActivity(intent)
+            getWord.launch(intent)
         }
     }
 

@@ -8,7 +8,10 @@ import com.example.dictionaryapp.database.models.Word
 
 @Dao
 interface WordDao {
-    @Query("SELECT w.word FROM word as w")
+    @Query("DELETE FROM word")
+    suspend fun deleAll()
+
+    @Query("SELECT w.word FROM word as w ORDER BY w.id DESC")
     suspend fun getAllWords(): List<String>
 
     @Query("SELECT * FROM word as w WHERE w.word=:text")

@@ -154,6 +154,10 @@ class MainRepository(private val database: AppDatabase){
         return database.wordDao().getAllWords()
     }
 
+    suspend fun deleteALlWords(){
+        database.wordDao().deleAll()
+    }
+
     suspend fun getWord(word:String):List<Word>{
         return dictionaryApiService.getWord(word)
     }

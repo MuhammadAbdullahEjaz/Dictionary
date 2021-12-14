@@ -2,10 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
         <variable
             name="viewModel"
             type="com.example.dictionaryapp.WordViewModel" />
+
+        <variable
+            name="clickListener"
+            type="com.example.dictionaryapp.utils.OnItemClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,25 +18,69 @@
         android:layout_height="match_parent"
         tools:context=".WordsActivity">
 
-        <TextView
-            android:id="@+id/heading"
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="32sp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Words"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginVertical="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/home"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:minWidth="42dp"
+                android:minHeight="42dp"
+                android:textColor="@color/purple_500"
+                app:icon="@drawable/ic_baseline_arrow_back_ios_24"
+                app:iconPadding="0dp"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/heading"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/purple_500"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="History"
+                android:textSize="20sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/delete_all"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:minWidth="42dp"
+                android:minHeight="42dp"
+                app:icon="@drawable/ic_baseline_delete_24"
+                app:iconPadding="0dp"
+                tools:ignore="RelativeOverlap,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/allWords"
             android:layout_width="match_parent"
-            android:wordListAdapter="@{viewModel.data}"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clipToPadding="false"
+            android:wordListAdapter="@{viewModel.data}"
+            android:wordListClickListener="@{clickListener}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/heading" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,17 +5,20 @@
       <map>
         <entry key="..\:/Android_Projects/DictionaryApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Dictionary/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Dictionary/app/src/main/res/drawable/group_indicator.xml" value="0.2203125" />
+        <entry key="..\:/Dictionary/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.2203125" />
         <entry key="..\:/Dictionary/app/src/main/res/drawable/ic_baseline_arrow_downward_24.xml" value="0.1" />
         <entry key="..\:/Dictionary/app/src/main/res/drawable/ic_baseline_arrow_upward_24.xml" value="0.1" />
+        <entry key="..\:/Dictionary/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.2203125" />
         <entry key="..\:/Dictionary/app/src/main/res/drawable/ic_baseline_history_24.xml" value="0.1" />
         <entry key="..\:/Dictionary/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
-        <entry key="..\:/Dictionary/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Dictionary/app/src/main/res/layout/activity_words.xml" value="0.13125" />
+        <entry key="..\:/Dictionary/app/src/main/res/layout/activity_main.xml" value="0.24375" />
+        <entry key="..\:/Dictionary/app/src/main/res/layout/activity_words.xml" value="0.1" />
         <entry key="..\:/Dictionary/app/src/main/res/layout/head_item.xml" value="0.12771739130434784" />
         <entry key="..\:/Dictionary/app/src/main/res/layout/meaning_item.xml" value="0.18" />
         <entry key="..\:/Dictionary/app/src/main/res/layout/synant_header.xml" value="0.1" />
         <entry key="..\:/Dictionary/app/src/main/res/layout/synant_item.xml" value="0.1" />
-        <entry key="..\:/Dictionary/app/src/main/res/layout/word_item.xml" value="0.15572916666666667" />
+        <entry key="..\:/Dictionary/app/src/main/res/layout/word_item.xml" value="0.1" />
       </map>
     </option>
   </component>

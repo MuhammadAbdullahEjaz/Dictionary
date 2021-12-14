@@ -2,7 +2,6 @@ package com.example.dictionaryapp
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ExpandableListView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dictionaryapp.databinding.HeadItemBinding
 import com.example.dictionaryapp.databinding.MeaningItemBinding

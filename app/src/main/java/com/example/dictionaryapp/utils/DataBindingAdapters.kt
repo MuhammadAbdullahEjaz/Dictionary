@@ -52,10 +52,10 @@ fun setData(recyclerView: RecyclerView, data:Word?){
     }
 }
 
-@BindingAdapter("android:wordListAdapter")
-fun setWordAdapter(recyclerView: RecyclerView, data:List<String>?){
+@BindingAdapter("android:wordListAdapter", "android:wordListClickListener")
+fun setWordAdapter(recyclerView: RecyclerView, data:List<String>?, clickListener: OnItemClickListener){
     if(recyclerView.adapter == null){
-        val adapter = WordListAdaptet()
+        val adapter = WordListAdaptet(clickListener)
         adapter.updateData(data)
         recyclerView.adapter = adapter
     }else{

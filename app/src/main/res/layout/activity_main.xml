@@ -26,10 +26,13 @@
 
             <TextView
                 android:id="@+id/title"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="@string/app_title"
-                android:textSize="32sp"/>
+                android:textColor="@color/purple_500"
+                android:textSize="20sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/history"
@@ -37,9 +40,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                app:iconGravity="end"
+                android:minWidth="42dp"
+                android:minHeight="42dp"
                 app:icon="@drawable/ic_baseline_history_24"
-                app:iconPadding="0dp"/>
+                app:iconPadding="0dp"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
         </RelativeLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -78,16 +84,16 @@
             android:id="@+id/error"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_marginTop="32dp"
             android:orientation="vertical"
             android:visibility="@{viewModel.errorVisibility}">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:text="@string/error"
-                android:textSize="48sp" />
+                android:textSize="24sp" />
 
         </LinearLayout>
 
