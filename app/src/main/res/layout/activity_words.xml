@@ -31,6 +31,7 @@
                 android:id="@+id/home"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
+                android:tooltipText="Back"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:minWidth="42dp"
@@ -57,6 +58,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/delete_all"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:tooltipText="Delete History"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

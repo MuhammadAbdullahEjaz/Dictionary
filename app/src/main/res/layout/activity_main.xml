@@ -38,6 +38,7 @@
                 android:id="@+id/history"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
+                android:tooltipText="History"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:minWidth="42dp"
